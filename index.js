@@ -16,7 +16,7 @@ const replaceVal = (tempVal, orgVal) => {
 
   return temperature;
 };
-            const server = http.createServer((req, res) => {
+            const server = https.createServer((req, res) => {
               if (req.url == "/") {
                 requests(
                   `http://api.openweathermap.org/data/2.5/weather?q=Panvel&units=metric&appid=5433cea6551ae03ce5316dbdd17e728c`
@@ -39,6 +39,6 @@ const replaceVal = (tempVal, orgVal) => {
               }
             });
             
-            server.listen(8000, "127.0.0.1");
+          
           
           
