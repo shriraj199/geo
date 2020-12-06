@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="weather" content="card making">
+   <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <title>weather</title>
+  </head>
+  <body><center>
+    <div class="container">
+      <div class="card">
+        <div class="card-body">
+          
+          <div class="img" id="img">
+          <img src="night.png" alt="night" height="185"/></div><br>
+          <p class="city">city<span class="state">, country</span></p>
+          <p class="day" id="day">Saturday,5 Dec, 2020</p>
+          
+          <div class="column" id="column">
+            <!-- <img src="rain.png" alt="rain" /> -->
+          
+          </div>
+          <p class="temp">temp °C</p><br>
+          <p class="day" id="min_max">Min: °C  Max: °C</p>
+        </div>
+      </div>
+    </div>
+    </center>
+    <script>
+      const day1 = document.getElementById('day');
+  
+      let column = document.getElementById("column");
+
+      const tempStatus = "{%tempstatus%}";
+
+      //condition to check sunny or cloudy
+      if (tempStatus == "sunny") {
+        column.innerHTML =
+          "<img src='sunny.png' alt='sunny' >";
+      } else if (tempStatus == "Clouds") {
+        column.innerHTML =
+          "<img src='cloud.png' alt='cloud' >";
+      } else if (tempStatus == "Rainy") {
+        column.innerHTML =
+          "<img src='rainy.png' alt='rain' >";
+      } else {
+        column.innerHTML =
+          "<img src='smoke.png' alt='smoke' height='60'>";
+      }
+      
+
+      const getCurrentDay = () =>{
+        var weekday=new Array(7);
+        weekday[0]="sunday";
+        weekday[1]="Mon";
+        weekday[2]="Tue";
+        weekday[3]="Wed";
+        weekday[4]="Thur";
+        weekday[5]="Fri";
+        weekday[6]="Sat";
+      let currentTime= new Date();
+      let day = weekday[currentTime.getDay()];
+      return day;
+      }
+      const getCurrentTime = () =>{
+        var months=[
+       "Jan",
+       "Feb",
+       "Mar",
+       "Apr",
+       "May",
+       "June",
+       "July",
+       "Aug",
+       "Sep",
+       "Oct",
+       "Nov",
+       "Dec",
+      ];
+
+        var now = new Date();
+        var month = months[now.getMonth()];
+       var date = now.getDate();
+       let hours = now.getHours();
+       let mins =  now.getMinutes();
+       let img = document.getElementById('img');
+       let periods = "AM";
+       if(hours>11){
+         periods = "PM";
+        
+       }
+       if (mins<10) {
+         mins = "0" + mins;
+       }
+       if(hours < 20){
+        img.innerHTML="<img src='day.png' alt='day' height='185'>";
+       }
+return`${date} ${month},${hours}:${mins}${periods}`;
+      }
+      day1.innerHTML = getCurrentDay()+','+getCurrentTime();
+
+
+    </script>
+  </body>
+</html>
